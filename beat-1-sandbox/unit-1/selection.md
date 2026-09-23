@@ -19,83 +19,85 @@ https://github.com/codepath/pathreview-ai301-fa26-s1/issues/67
 
 **Verdict output**
 
-All three URLs are in the scoped repo (codepath/pathreview-ai301-fa26-s1). Graded each independently against rubric.md, then ranked the accepted ones by the fit profile.
+All three candidates are in the scoped repo (`codepath/pathreview-ai301-fa26-s1`). Graded each independently against `rubric.md`, then ranked the accepted issues by the fit profile.
 
-Shared repo evidence
+Shared repo-level evidence:
 
-- Maintainer: Aburke225 is author_association: COLLABORATOR and pushed 3 default-branch commits on 2026-09-16 (f89c06f, 2b8855f, 32240e0) — 4 days before today. Well past the 2-activities-in-60-days bar.
-- Repo: isArchived: false, pushedAt: 2026-09-16. No releases exist, but push activity is inside 6 months.
-- AI policy: docs/CONTRIBUTING.md, .github/PULL_REQUEST_TEMPLATE.md, the four issue templates, and README contain no AI restriction. Silence passes. (CONTRIBUTING does impose green CI and xfail-marker removal — terms, not a ban.)
-- Availability: the repo has zero pull requests of any state, and all three issues have zero comments, zero assignees, and no cross-references in their timelines. Nothing blocks any of them. The Path Review house rule on classmate claims never even comes into play.
+- Repo is not archived (`isArchived: false`) and was last pushed on `2026-09-16T21:48:27Z`, 6 days before the reference date. No releases exist.
+- `Aburke225`, whose `author_association` on these issues is `COLLABORATOR`, authored three default-branch commits on 2026-09-16 (`f89c06f`, `2b8855f`, `32240e0`).
+- No AI restriction is stated in `docs/CONTRIBUTING.md`, `.github/PULL_REQUEST_TEMPLATE.md`, or the README.
+- The repository's only pull request, #74, closes #60, so none of these three candidates has a linked PR, assignee, or comment.
+
+Per the Path Review house rule, a classmate claim would not block any of these issues anyway; none currently has one.
 
 Ranked read-out — all three accepted
 
-1. #32 — DELETE /profiles/{profile_id} leaves embeddings in the vector store. Best fit: it spans the API route, the service layer, and the RAG vector store, so it is backend logic + data processing + an ML-adjacent component that needs no ML knowledge — three of your stated preferences and two growth areas in one bounded fix.
+1. #67 — Review creation does not verify profile ownership. Top fit: a backend authorization bug in `core/services/review_service.py`, with the intended behavior already demonstrated by `get_review()` and `list_reviews()` scoping through `Profile.user_id`. This matches the fit profile's strongest areas: APIs, backend logic, and debugging. The issue body is truncated mid-code-block, but the rubric explicitly says a brief body does not fail scope by itself, and the expected behavior is settled.
 
-2. #67 — Review creation does not verify profile ownership. Clean backend authorization fix in review_service.py, with the correct behavior already pinned by the existing get_review()/list_reviews() scoping. Slightly narrower than #32 (mostly one service file), so second.
+2. #32 — `DELETE /profiles/{profile_id}` leaves embeddings in the vector store. This spans `api/routes/profiles.py`, `core/services/profile_service.py`, and `rag/retriever/vector_store.py`, combining API work, backend data-lifecycle logic, and an ML-adjacent component without requiring ML depth. It is still one bounded outcome under the rubric.
 
-3. #1 — Duplicate embeddings on re-ingest. Real debugging/performance work in the ingestion pipeline, but the issue body already names the exact root cause (db_session.query("IngestedSource") as a string, masked by a broad except), leaving the least to figure out.
+3. #1 — Duplicate embeddings generated when re-ingesting the same repository. This is a debugging and performance issue involving a string passed to `db_session.query()` instead of the model class and swallowed by a broad `except`. It matches data-processing and debugging preferences, but has no API surface, making it the weakest fit of the three.
 
 Per-check grades:
 
-┌──────────────────────┬──────┬──────┬──────┐
-│        Check         │ #32  │ #67  │  #1  │
-├──────────────────────┼──────┼──────┼──────┤
-│ maintainer-alive     │ pass │ pass │ pass │
-├──────────────────────┼──────┼──────┼──────┤
-│ repo-in-use          │ pass │ pass │ pass │
-├──────────────────────┼──────┼──────┼──────┤
-│ scope-and-spec       │ pass │ pass │ pass │
-├──────────────────────┼──────┼──────┼──────┤
-│ available-to-work-on │ pass │ pass │ pass │
-├──────────────────────┼──────┼──────┼──────┤
-│ ai-policy-compatible │ pass │ pass │ pass │
-└──────────────────────┴──────┴──────┴──────┘
+#67
+- maintainer-alive: pass — `Aburke225` (`author_association: COLLABORATOR`) authored 3 default-branch commits on 2026-09-16, 6 days before 2026-09-22.
+- repo-in-use: pass — `isArchived=false`; `pushedAt 2026-09-16T21:48:27Z`, within 6 months.
+- scope-and-spec: pass — One bounded outcome: `core/services/review_service.py` ignores the ownership argument; expected behavior is settled by existing `get_review()`/`list_reviews()` scoping through `Profile.user_id`.
+- available-to-work-on: pass — `assignees: []`; `comments: []`; timeline shows only two labeled events; PR #74 closes #60, not this issue.
+- ai-policy-compatible: pass — No AI restriction found in `docs/CONTRIBUTING.md`, `.github/PULL_REQUEST_TEMPLATE.md`, or README.
 
-One note on where the rubric and the issues sit a little oddlyed effort: 4–6 hours" / tier-2 label rather than agood-first-issue label, and the rubric has no difficulty-tier check, so tier plays no part in these verdicts. If you want tier to matter, that belongs in
-rubric.md, not in this run.
+#32
+- maintainer-alive: pass — Collaborator `Aburke225` made 3 default-branch commits on 2026-09-16 and renamed the issue the same day.
+- repo-in-use: pass — `isArchived=false`; last push was 2026-09-16.
+- scope-and-spec: pass — "Clearing those chunks should be part of the deletion" is one defined outcome across three named files, with no unresolved design decision.
+- available-to-work-on: pass — `assignees: []`; no comments; no linked or mentioned PR.
+- ai-policy-compatible: pass — No AI restriction in CONTRIBUTING, PR template, or README.
 
+#1
+- maintainer-alive: pass — Collaborator `Aburke225` authored commits `f89c06f`, `2b8855f`, and `32240e0` on 2026-09-16, plus a rename event on the issue that day.
+- repo-in-use: pass — `isArchived=false`; `pushedAt 2026-09-16T21:48:27Z`, within 6 months.
+- scope-and-spec: pass — `_check_skip()` passes the string `"IngestedSource"` to `db_session.query()` instead of the model class; this is one settled defect in two named files.
+- available-to-work-on: pass — `assignees: []`; `comments: []`; no PR references the issue.
+- ai-policy-compatible: pass — No stated AI restriction in the repo's contributor docs or templates.
+
+```json
 [
   {
-    "item": "https://github.com/codepath/pathreview-ai301-fa26
+    "item": "https://github.com/codepath/pathreview-ai301-fa26-s1/issues/67",
     "checks": [
-      {"name": "maintainer-alive", "grade": "pass", "evidence"hored 3 default-branch commits on 2026-09-16 (f89c06f, 2b8855f, 32240e0), within 60 days."},
-      {"name": "repo-in-use", "grade": "pass", "evidence": "is6-09-16, within 6 months."},
-      {"name": "scope-and-spec", "grade": "pass", "evidence": "One bounded outcome: 'Clearing those chunks should be part of the deletion' across 3 named
-related files; no open design question."},
-      {"name": "available-to-work-on", "grade": "pass", "evidence": "assignees: []; 0 comments; repo has zero PRs of any state; timeline shows only label
-and rename events."},
-      {"name": "ai-policy-compatible", "grade": "pass", "evidence": "docs/CONTRIBUTING.md, PR template, issue templates and README state no AI
-restriction."}
+      {"name": "maintainer-alive", "grade": "pass", "evidence": "Aburke225 (author_association COLLABORATOR on this issue) authored 3 default-branch commits on 2026-09-16, 6 days before 2026-09-22."},
+      {"name": "repo-in-use", "grade": "pass", "evidence": "isArchived=false; pushedAt 2026-09-16T21:48:27Z, well within 6 months (no releases exist, but push activity satisfies the 'either' condition)."},
+      {"name": "scope-and-spec", "grade": "pass", "evidence": "One bounded outcome: 'core/services/review_service.py ignores that argument'; expected behavior settled by existing get_review()/list_reviews() scoping through Profile.user_id."},
+      {"name": "available-to-work-on", "grade": "pass", "evidence": "assignees: []; comments: []; timeline shows only two 'labeled' events; repo's sole open PR #74 closes #60, not this issue."},
+      {"name": "ai-policy-compatible", "grade": "pass", "evidence": "No AI restriction found in docs/CONTRIBUTING.md, .github/PULL_REQUEST_TEMPLATE.md, or README; silence passes."}
     ],
     "verdict": "accept"
   },
   {
-    "item": "https://github.com/codepath/pathreview-ai301-fa26-s1/issues/67",
+    "item": "https://github.com/codepath/pathreview-ai301-fa26-s1/issues/32",
     "checks": [
-      {"name": "maintainer-alive", "grade": "pass", "evidence": "Collaborator Aburke225 authored 3 default-branch commits on 2026-09-16, within 60
-days."},
-      {"name": "repo-in-use", "grade": "pass", "evidence": "isArchived: false; pushedAt 2026-09-16, within 6 months."},
-      {"name": "scope-and-spec", "grade": "pass", "evidence": eate_review through Profile.user_id, 'consistent withget_review() and list_reviews()'."},
-      {"name": "available-to-work-on", "grade": "pass", "evidents; no PRs exist in the repo; timeline shows only two labelevents."},
-      {"name": "ai-policy-compatible", "grade": "pass", "evideONTRIBUTING, PR template, issue templates or README."}
+      {"name": "maintainer-alive", "grade": "pass", "evidence": "Collaborator Aburke225 made 3 default-branch commits on 2026-09-16 and renamed this issue on 2026-09-16T21:49:37Z — 2+ qualifying activities inside 60 days."},
+      {"name": "repo-in-use", "grade": "pass", "evidence": "isArchived=false; last push 2026-09-16, 6 days before the reference date."},
+      {"name": "scope-and-spec", "grade": "pass", "evidence": "'Clearing those chunks should be part of the deletion' — one defined outcome across three named files; no unresolved design decision."},
+      {"name": "available-to-work-on", "grade": "pass", "evidence": "assignees: []; no comments; timeline holds only label and rename events; no linked or mentioned PR."},
+      {"name": "ai-policy-compatible", "grade": "pass", "evidence": "No AI-policy file and no AI restriction in CONTRIBUTING, PR template, or README."}
     ],
     "verdict": "accept"
   },
   {
     "item": "https://github.com/codepath/pathreview-ai301-fa26-s1/issues/1",
     "checks": [
-      {"name": "maintainer-alive", "grade": "pass", "evidence": "Collaborator Aburke225 authored 3 default-branch commits on 2026-09-16, within 60
-days."},
-      {"name": "repo-in-use", "grade": "pass", "evidence": "isArchived: false; pushedAt 2026-09-16, within 6 months."},
-      {"name": "scope-and-spec", "grade": "pass", "evidence": d: _check_skip() 'passes the string \"IngestedSource\" todb_session.query() instead of the model class'."},
-      {"name": "available-to-work-on", "grade": "pass", "evidents; no PRs exist in the repo; timeline shows only four labelevents."},
-      {"name": "ai-policy-compatible", "grade": "pass", "evideONTRIBUTING, PR template, issue templates or README."}
+      {"name": "maintainer-alive", "grade": "pass", "evidence": "Collaborator Aburke225: commits f89c06f, 2b8855f, 32240e0 all dated 2026-09-16, plus a rename on this issue the same day."},
+      {"name": "repo-in-use", "grade": "pass", "evidence": "isArchived=false; pushedAt 2026-09-16T21:48:27Z is within the last 6 months."},
+      {"name": "scope-and-spec", "grade": "pass", "evidence": "'_check_skip() ... passes the string \"IngestedSource\" to db_session.query() instead of the model class' — a single settled defect in two named files."},
+      {"name": "available-to-work-on", "grade": "pass", "evidence": "assignees: []; comments: []; timeline is four 'labeled' events only; no PR references this issue."},
+      {"name": "ai-policy-compatible", "grade": "pass", "evidence": "No stated AI restriction anywhere in the repo's contributor docs or templates."}
     ],
     "verdict": "accept"
   }
 ]
-
+```
 ---
 
 ## Eval iterations
@@ -175,7 +177,7 @@ This is also the basis for the claim comment you write in Unit 2.
 
 1. #67 fits my interests because it is a backend authorization and service-logic bug rather than a documentation or test-only task. I also wanted to try a tier-2 issue instead of another very small tier-1 fix. The scope still looks bounded enough to be manageable within the course timeline.
 
-2. The verdict correctly identified that the repository is active, the expected behavior is clear, and the issue is currently available to work on. Even though #32 ranked slightly higher by my fit profile, #67 feels like a better balance between being challenging enough to learn from and still being narrow enough for a first contribution.
+2. The verdict correctly identified that the repository is active, the expected behavior is clear, and the issue is currently available to work on. The verdict also ranked #67 highest by my fit profile, which matches my preference for backend authorization and service-logic work while keeping the scope bounded enough for a first contribution.
 
 3. I expect claiming #67 to be straightforward because it currently has no assignee, no comments, and no open PR showing that someone else is working on it.
 ---
