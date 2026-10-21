@@ -55,10 +55,9 @@ happened; these entries are the toolkit's own timeline.
 All four entries are graded. Keep every heading below, and fill each
 one in the week it belongs to.
 
-**Unit 5: [one line on the tool work]**
+**Unit 5: Built and tested an issue-scout search strategy**
 
-[2-4 sentences: what you built (the scout, your strategy), what broke
-or fell short, what changed because of it.]
+I created a search strategy using GitHub CLI queries for Python, Java, and C++ projects, with metadata-based ranking filters. My first scan evaluated five issues and accepted one, but the accepted issue had concerns about implementation complexity and external contributor support. I then graded three issues from the Issue Selection site, and all were rejected because the repository prohibits LLM-sourced contributions. These results showed that repository contribution policies and active PRs must be checked before choosing an issue.
 
 **Unit 6: [one line on the tool work]**
 
