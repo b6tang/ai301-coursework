@@ -58,11 +58,9 @@ one in the week it belongs to.
 
 I created a search strategy using GitHub CLI queries for Python, Java, and C++ projects, with metadata-based ranking filters. My first scan evaluated five issues and accepted one, but the accepted issue had concerns about implementation complexity and external contributor support. I then graded three issues from the Issue Selection site, and all were rejected because the repository prohibits LLM-sourced contributions. These results showed that repository contribution policies and active PRs must be checked before choosing an issue.
 
-**Unit 6: [one line on the tool work]**
+**Unit 6: Installed a voice guard and created repository memory for py-pdf/pypdf**
 
-[2-4 sentences: the voice-guard, the repo-memory file. What broke or
-fell short, and what changed because of it. "Nothing broke" counts when
-it is true - say how you know.]
+I installed a user-level voice guard and used it to check my claim before posting it to pypdf issue #4316. My original claim rule required checkable scope before reproduction, which made a simple claim unnecessarily detailed, so I revised the rule to require a concrete first step without promising a fix. I also created a local `CLAUDE.local.md` that records the relevant image-extraction subsystem, tests, contribution rules, and AI policy, and excluded it from Git through `.git/info/exclude`. The test commands have not been verified yet, so I will update the memory file while reproducing the issue.
 
 **Unit 7: [one line on the tool work]**
 
