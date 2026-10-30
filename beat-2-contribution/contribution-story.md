@@ -1,4 +1,4 @@
-# Contribution: [Issue Title]
+# Contribution: 2-bit and 4-bit /DeviceGray images are extracted as black images
 
 Path: `beat-2-contribution/contribution-story.md`
 
@@ -8,10 +8,9 @@ format criteria grade exactly that. Your course repo link is the whole submissio
 files and no evidence uploads are part of Assignment 5.
 
 **Contribution Number:** [1]
-**Student:** [Student name]
-**GitHub Username:** [your GitHub username, exactly as it appears on your profile - no @, no
-profile URL. Your comments upstream are identified by this name.]
-**Issue:** [GitHub issue link]
+**Student:** baowent
+**GitHub Username:** b6tang
+**Issue:** https://github.com/py-pdf/pypdf/issues/4316
 **Pull Request:** [GitHub PR link, once opened]
 
 One repository, built across units 5 to 8, telling the whole story of your real
@@ -79,24 +78,21 @@ drafted, what you did with the draft.]
 
 ## Why I Chose This Issue
 
-[1-2 paragraphs in your own words: how you searched, what your scan
-surfaced, what your scout's verdict said, why this issue fits your
-profile, and what you hope to learn. If your scout's verdict on it
-was reject and you chose it anyway, say so here and say why; choosing
-against your own tool silently is what loses points. Close with an
-honest read of the tool itself: where the scout fell short on a real
-wild search and what you changed or would change, or what convinced
-you it held up. **Record the link to your claim comment in this section too.**
-Not claimed yet? Write `claim pending` and today's date where the link goes,
-and add the link the moment your claim lands.]
+I found #4316 through the GitHub Issues Search API rather than by browsing. I searched recent, unassigned Python and C++ issues, then checked repository activity, comments, and linked pull requests. The issue was open, unclaimed, and filed by a pypdf maintainer. I graded it with issue-scout in direct mode; it received an accept verdict with moderate difficulty.
+
+The issue fits my profile because pypdf is Python and the bug involves binary data decoding and debugging in production code rather than documentation or UI. I hope to learn how pypdf handles packed grayscale samples and how to turn a minimal reproduction into a regression test. My regular scout scan did not surface this issue because it was new and lacked readiness labels, showing that my title- and label-based search still needs a broader fallback for recent correctness bugs.
+
+Claim comment: https://github.com/py-pdf/pypdf/issues/4316#issuecomment-6521095341
 
 **Toolkit**
 
-- Tool: issue-scout (your scout: your search strategy, your rubric),
-  and how you used it
-- What it produced: [the scan and its verdict on this issue, described]
-- Difficulties: [where it fell short, or "none met" if none did]
-- What changed: [what you patched or would update, or "nothing"]
+- Tool: issue-scout; I repeatedly ran fresh scans while revising its search strategy, then used live direct mode to grade #4316 after finding it through a separate GitHub Issues Search API query.
+
+- What it produced: The fresh scans produced several rubric-accepted candidates, but none was a good issue for me to claim. Direct grading accepted #4316 with a moderate difficulty note and all required checks passing.
+
+- Difficulties: The search stage did not surface a realistically claimable issue. #4316 was created four minutes after my latest scan began and would also have been excluded by the 14-day age filter. Several other accepted candidates exposed signals that the search and ranking did not capture well, including specialized setup requirements and weak evidence of accepting external contributions.
+
+- What changed: I applied the Unit 6 rubric patch, rewrote the queries and ranking filters, tested contribution-readiness labels, added repository deduplication, and increased the grading count from five to ten. When those changes still did not produce a suitable issue, I used a broader GitHub API search and passed the result to issue-scout in direct mode.
 
 ---
 
