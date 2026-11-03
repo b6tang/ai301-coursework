@@ -1,4 +1,4 @@
-# Contribution: 2-bit and 4-bit /DeviceGray images are extracted as black images
+# Contribution: Facet counts on page 2 of a table leave out rows from page 1, and facet links keep `_next`
 
 Path: `beat-2-contribution/contribution-story.md`
 
@@ -10,15 +10,8 @@ files and no evidence uploads are part of Assignment 5.
 **Contribution Number:** [1]
 **Student:** baowent
 **GitHub Username:** b6tang
-**Issue:** https://github.com/py-pdf/pypdf/issues/4316
-**Pull Request:** [GitHub PR link, once opened]
-
-One repository, built across units 5 to 8, telling the whole story of your real
-contribution. Fill it as you work, not at the end - the sections below ask for evidence that
-is far easier to write down as it happens than to reconstruct in the last weekend.
-
-Contribution Number stays `[1]` unless you make more than one contribution this term; it
-just numbers them.
+**Issue:** https://github.com/simonw/datasette/issues/3021
+**Pull Request:** https://github.com/simonw/datasette/pull/3026
 
 ---
 
@@ -58,41 +51,38 @@ one in the week it belongs to.
 
 I created a search strategy using GitHub CLI queries for Python, Java, and C++ projects, with metadata-based ranking filters. My first scan evaluated five issues and accepted one, but I had concerns about its implementation complexity and the repository's support for external contributors. I then graded three issues from the Issue Selection site, and all were rejected because the repository prohibits LLM-sourced contributions. These results showed that repository contribution policies and active PRs must be checked before choosing an issue.
 
-**Unit 6: Installed a voice guard and created repository memory for py-pdf/pypdf**
+**Unit 6: Installed a voice guard and created repository memory for simonw/datasette**
 
-I installed a user-level voice guard and used it to check my claim before posting it to the pypdf issue. My original claim rule required checkable scope before reproduction, which made a simple claim unnecessarily detailed, so I revised the rule to require a concrete first step without promising a fix. I also created a local `CLAUDE.local.md` that records the relevant image-extraction subsystem, tests, contribution rules, and AI policy, and excluded it from Git through `.git/info/exclude`. After setting up the repository's CI test dependencies, I verified the targeted commands and updated the memory file with the actual Windows, Python, pypdf, and Pillow versions.
+I installed the user-level voice guard and wrote a voice guide that required my claim to name a concrete first step, avoid promising a fix, and distinguish confirmed observations from explanations still under investigation. My first rule required checkable implementation scope before reproduction, which made a short claim unnecessarily detailed, so I revised it to require only a concrete investigation step and a time for the next update. I then used the guard to check my claim for Datasette #3021 before posting it. I also created and locally excluded `CLAUDE.local.md`, where I recorded the scoped facet-pagination path, repository conventions, and exact test commands.
 
-**Unit 7: [one line on the tool work]**
+**Unit 7: Validated the Datasette fix with the ship-gate**
 
-[2-4 sentences: the ship-gate and your gate manifest. What it produced
-on your real branch, what fought you, what changed because of it.]
+I installed the ship-gate and filled in `ship-manifest.md` with Datasette’s required Black and Ruff checks, while recording the full pytest suites separately with the reason they did not run cleanly on Windows. On `fix/3021-facet-pagination`, the gate passed both repository checks, and `pr-precheck` accepted the plan fidelity, test evidence, diff quality, and PR communication. Windows temporary-file cleanup failures made the local full-suite results difficult to interpret. I therefore kept the focused regression results separate and reran the full suites in WSL, where they completed without failures.
 
-**Unit 8: [one line on the tool work]**
+**Unit 8: Used the PR-monitor to choose a no-reply wait**
 
-[2-4 sentences: the PR-monitor and your playbook. What it read, what it
-drafted, what you did with the draft.]
+I installed the PR-monitor and wrote a playbook covering actionable review responses, waiting thresholds, nudge etiquette, and walk-away criteria. The monitor read PR #3026 as open and mergeable with one passing check, no maintainer decision, and a praise-only review from a non-maintainer. It drafted a no-reply wait note, which I reviewed and kept local because there was no actionable feedback and the 14-day nudge threshold had not been reached.
 
 ---
 
 ## Why I Chose This Issue
 
-I found the issue through the GitHub Issues Search API rather than by browsing. I searched recent, unassigned Python and C++ issues, then checked repository activity, comments, and linked pull requests. The issue was open, unclaimed, and filed by a pypdf maintainer. I graded it with issue-scout in direct mode; it received an accept verdict with moderate difficulty.
+After another contributor opened a PR for an issue I had already claimed, I searched again using the GitHub Issues Search API. I searched for recent, unassigned Python and C++ issues from the previous 90 days, found Datasette #3021, and passed it to issue-scout for direct grading. Issue-scout returned an `accept` verdict: all five required checks passed, and it rated the difficulty as moderate.
 
-The issue fits my profile because pypdf is a Python project, and the bug involves binary data decoding and debugging in production code. I hope to learn more about handling packed binary image data and how to turn a real parsing bug into a focused regression test.
+This issue fits me because it is a focused Python bug involving backend request handling, SQL, and pagination. I wanted to learn how Datasette calculates facets across pages and how to turn a live reproduction into regression tests. Issue-scout was useful for grading a candidate I had already found, but its built-in scan had not surfaced this issue, and its rubric could not determine whether a repository treats a claim comment as reserving the work. My previous experience showed that another contributor can still open a PR after a claim, so next time I would check the repository's actual claiming convention and move from reproduction to implementation sooner.
 
-My regular scout scan did not surface this issue because it was new and lacked contribution-readiness labels. I had to find it through a broader GitHub Issues Search API query and then use issue-scout in direct mode to evaluate it.
 
-Claim comment: https://github.com/py-pdf/pypdf/issues/4316#issuecomment-6521095341
+Claim comment: https://github.com/simonw/datasette/issues/3021#issuecomment-6541316576
 
 **Toolkit**
 
-- Tool: issue-scout; I repeatedly ran fresh scans while revising its search strategy, then used live direct mode to grade [py-pdf/pypdf#4316](https://github.com/py-pdf/pypdf/issues/4316) after finding it through a separate GitHub Issues Search API query.
+- Tool: issue-scout; I repeatedly ran fresh scans while revising its search strategy, then used live direct mode to grade [Datasette #3021](https://github.com/simonw/datasette/issues/3021) after finding it through a separate GitHub Issues Search API query.
 
 - What it produced: The fresh scans produced several candidates that passed the rubric, but none was a good issue for me to claim. In direct mode, issue-scout accepted this issue with all required checks passing and reported a moderate difficulty level.
 
-- Difficulties: The search stage did not surface a realistically claimable issue. This issue was created a few minutes after my latest scan began and would also have been excluded by the 14-day age filter. Several other accepted candidates exposed signals that the search and ranking did not capture well, including specialized setup requirements and limited evidence of support for external contributors.
+- Difficulties: The one-per-repository filter reduced repeated AI-policy rejections, but issue-scout could still accept active repositories with little evidence that they merge outside contributions.
 
-- What changed: I applied the Unit 6 rubric patch, rewrote the queries and ranking filters, tested contribution-readiness labels, added repository deduplication, and increased the grading count from five to ten. When those changes still did not produce a suitable issue, I used a broader GitHub API search and passed the result to issue-scout in direct mode.
+- What changed: I applied the Unit 6 rubric patch, revised the queries and ranking filters, tested contribution-readiness labels, added a one-candidate-per-repository filter, and increased the grading count from 5 to 10. When those changes still did not produce a suitable issue, I used a broader GitHub API search and passed #3021 to issue-scout in direct mode.
 
 ---
 
@@ -100,239 +90,128 @@ Claim comment: https://github.com/py-pdf/pypdf/issues/4316#issuecomment-65210953
 
 **Problem Description**
 
-[In your own words, what is broken or missing?]
+Facet counts change after moving to another table page because pagination conditions are included in the facet query. Facet value links also retain `_next`, which skips valid matching rows after a value is selected.
 
 **Expected Behavior**
 
-[What should happen?]
+Facet counts should describe the complete filtered result set on every page, and selecting a facet value should show all matching rows.
 
 **Current Behavior**
 
-[What actually happens?]
+On page 2, the `pk1` facet omits earlier values and counts `d` as 4 instead of 26. Selecting `d` keeps `_next` and displays only four matching rows.
 
 **Affected Components**
 
-[Which parts of the codebase are involved?]
+- `datasette/views/table.py` constructs the SQL used for table rows and facets.
+- `datasette/views/table_extras.py` passes that SQL and its parameters to facet classes.
+- `datasette/facets.py` builds value links for column, array, and date facets.
+- `tests/test_facets.py` contains the regression coverage.
 
 **Toolkit**
 
-- Tool:
-- What it produced:
-- Difficulties:
-- What changed:
-
+- Tool: `plan-check`; I used it to grade `plan.md` and `plan-comment.md` against the issue.
+- What it produced: It returned an accept verdict with all six checks passing and confirmed the SQL and facet-link paths described in the plan.
+- Difficulties: None blocked the plan; it was accepted on the first run, although the grader offered optional clarifications.
+- What changed: Nothing in response to `plan-check`.
 ---
 
 ## Reproduction Process
 
 **Environment Setup**
 
-- **Operating system:** Windows 11 (`10.0.26300`)
-- **Python runtime:** Python 3.14.7
-- **Package manager:** pip 26.2.1
-- **Project:** pypdf 6.21.4
-- **Branch and commit:** `main` at `7f0fb27944b994e2aec53d00457f038ab5312c57`
-- **Relevant image dependency:** Pillow 13.0.0
+I reproduced the issue on the official Datasette demo on 2026-10-31. This avoided depending on changes in my local working tree and provided a publicly accessible reproduction environment.
 
-I forked py-pdf/pypdf to my GitHub account and cloned my fork, then created and activated a virtual environment in the repository:
+- **Public demo:** https://latest.datasette.io
+- **Python:** 3.11.0
+- **Datasette:** 1.0a41
+- **SQLite:** 3.34.1
+- **Commit:** `a8e13cc489b41f2f9a5aa691f5eb1bedf99a0e0b`
+- **Local client:** Windows 11 with PowerShell
 
+I confirmed the deployed version before reproducing the issue:
 ```powershell
-gh repo fork py-pdf/pypdf --clone
-Set-Location .\pypdf
-py -3.14 -m venv .venv
-.\.venv\Scripts\Activate.ps1
+Invoke-RestMethod 'https://latest.datasette.io/-/versions.json' |
+    ConvertTo-Json -Depth 8
 ```
 
-I initially followed the developer introduction and installed `requirements/dev.txt`:
-```powershell
-python -m pip install -r requirements/dev.txt
-```
-
-The first pytest command did not start because pypdf's pytest configuration uses `--disable-socket`, but `dev.txt` did not install the `pytest-socket` plugin that provides that option. I checked the project's testing documentation and installed the CI requirements specified for Python 3.11 and later:
-```powershell
-python -m pip install -r requirements/ci-3.11.txt
-```
-
-This installed `pytest-socket` and the remaining CI test dependencies. After that, pytest started correctly, and the targeted test reproduced the reported failure.
+The main setup challenge was making sure the public demo still matched the version and commit named in the report. The version endpoint confirmed the same environment, so I could reproduce the behavior without installing a separate local Datasette instance or changing tracked files.
 
 **Steps to Reproduce**
 
-1. I copied the minimal 4 x 1 `/DeviceGray` example from the issue into a temporary `repro_4316.py` file and ran it against the same checkout:
+1. Open the `sortable` fixture table: https://latest.datasette.io/fixtures/sortable
 
-   ```powershell
-   python .\repro_4316.py
-   ```
-2. I ran the existing regression test that Martin pointed out:
-
-   ```powershell
-   python -m pytest tests/test_filters.py::test_4bits_image -v -rxX
+2. Select `pk1` under **Suggested facets**. On page 1, the table reports 201
+   rows and the facet box shows:
+   ```text
+   a=26, b=26, c=26, d=26, e=26, f=26, g=26, h=19
    ```
 
-   Pytest reported the test as an expected failure for [py-pdf/pypdf#4316](https://github.com/py-pdf/pypdf/issues/4316).
-3. I reran the test while ignoring its `xfail` marker so that pytest would show the underlying assertion failure:
+3. Click **Next page**. The resulting URL contains:
 
-   ```powershell
-   python -m pytest tests/test_filters.py::test_4bits_image -v --runxfail -vv
+   ```text
+   _facet=pk1&_next=d%2Cv
    ```
-4. The existing test produced an all-black image instead of its expected 16-level grayscale gradient. The issue example produced black palette images for both 2-bit and 4-bit inputs, while the 8-bit control produced the expected grayscale values.
 
+   The page heading still reports 201 rows, but the `pk1` facet box now shows:
 
+   ```text
+   e=26, f=26, g=26, h=19, d=4
+   ```
+
+   Values `a`, `b`, and `c` are missing, and `d` has changed from 26 to 4.
+
+4. Click `d` in the page 2 facet box. The resulting URL retains both the
+   pagination cursor and the new filter:
+
+   ```text
+   _facet=pk1&_next=d%2Cv&pk1=d
+   ```
+
+   The heading reports 26 matching rows, while the facet box and table show
+   only the four matching rows after the cursor.
 
 **Reproduction Evidence**
 
-- **Commit showing reproduction:** None. I reproduced the issue using the main branch at commit 7f0fb27944b994e2aec53d00457f038ab5312c57 without changing any tracked files.
-- **Screenshots/logs:** Relevant terminal logs are embedded below. Local clone paths were replaced with `<repo>`, and the Pillow deprecation warning from the minimal script was omitted; the outputs are otherwise unchanged.
+- **Commit showing reproduction:** None. I reproduced the bug on the official demo, which reported upstream commit [`a8e13cc489b41f2f9a5aa691f5eb1bedf99a0e0b`](https://github.com/simonw/datasette/commit/a8e13cc489b41f2f9a5aa691f5eb1bedf99a0e0b). I did not change any tracked files during reproduction.
+- **Screenshots/logs:**  I recorded the browser observations below. The issue also includes a [BugReels recording](https://bugreels.com/sessions/bb921c22-5a15-4c80-a0a7-488f4baa3013/recording?t=66) showing the same reported behavior. My manual reproduction observations in official Datasette demo were:
 
-<details>
-<summary>Minimal 2/4/8-bit reproduction from the issue</summary>
+  ```text
+  `pk1` check: page 1
+  heading: 201 rows
+  pk1 facets: a=26, b=26, c=26, d=26, e=26, f=26, g=26, h=19
+  URL: https://latest.datasette.io/fixtures/sortable?_facet=pk1#facet-pk1
 
-```text
-2 bits: mode P, palette [0, 0, 0]
-[0, 0, 0, 0]
-4 bits: mode P, palette [0, 0, 0]
-[0, 0, 0, 0]
-8 bits: mode L, palette None
-[0, 85, 170, 255]
-```
-</details>
+  `pk1` check: page 2 - after clicking `Next page`
+  heading: 201 rows
+  pk1 facets: e=26, f=26, g=26, h=19, d=4
+  missing: a, b, c
+  URL: https://latest.datasette.io/fixtures/sortable?_facet=pk1&_next=d%2Cv
 
-<details>
-<summary>Existing test with the repository xfail marker</summary>
+   `pk1` check: after selecting d on page 2
+  heading: 26 rows where pk1 = "d"
+  facet: d=4
+  table rows shown: 4
+  URL: https://latest.datasette.io/fixtures/sortable?_facet=pk1&_next=d%2Cv&pk1=d
 
-```text
-===================================================== test session starts ======================================================
-platform win32 -- Python 3.14.7, pytest-9.1.1, pluggy-1.7.0 -- <repo>\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-benchmark: 5.3.0 (defaults: timer=time.perf_counter disable_gc=False min_rounds=5 min_time=0.000005 max_time=1.0 calibration_precision=10 warmup=False warmup_iterations=100000)
-rootdir: <repo>
-configfile: pyproject.toml
-plugins: platformdirs-4.12.4, benchmark-5.3.0, cov-7.1.0, socket-0.8.1, timeout-2.4.0, xdist-3.8.0, typeguard-4.6.0
-collected 1 item
+  additional `pk2` check:
+  page 1: a-s=8 each, t-z=7 each
+  page 2 after d,v: most values=4, t/u/v=3
+  page 3 after h,r: s=1 only
+  heading on every page: 201 rows
+  ```
 
-tests/test_filters.py::test_4bits_image XFAIL (#4316: 4-bit /DeviceGray images are extracted as black palette images)     [100%]
+- **My findings:**  I reproduced page-dependent facet counts with both `pk1` and `pk2`, showing that the problem was not limited to one column.
 
-=================================================== short test summary info ====================================================
-XFAIL tests/test_filters.py::test_4bits_image - #4316: 4-bit /DeviceGray images are extracted as black palette images
-====================================================== 1 xfailed in 1.71s ======================================================
-```
+  In the `pk1` case, page 2 omitted `a`, `b`, and `c`, and counted `d` as 4 instead of 26. Selecting `d` displayed only 4 of the 26 matching rows.
 
-</details>
-
-<details>
-<summary>Same test with xfail disabled (--runxfail)</summary>
-
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.14.7, pytest-9.1.1, pluggy-1.7.0 -- <repo>\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-benchmark: 5.3.0 (defaults: timer=time.perf_counter disable_gc=False min_rounds=5 min_time=0.000005 max_time=1.0 calibration_precision=10 warmup=False warmup_iterations=100000)
-rootdir: <repo>
-configfile: pyproject.toml
-plugins: platformdirs-4.12.4, benchmark-5.3.0, cov-7.1.0, socket-0.8.1, timeout-2.4.0, xdist-3.8.0, typeguard-4.6.0
-collecting ... collected 1 item
-
-tests/test_filters.py::test_4bits_image FAILED                           [100%]
-
-================================== FAILURES ===================================
-______________________________ test_4bits_image _______________________________
-
-    @pytest.mark.enable_socket
-    @pytest.mark.xfail(
-        reason="#4316: 4-bit /DeviceGray images are extracted as black palette images", raises=AssertionError
-    )
-    def test_4bits_image():
-        """
-        From #1954, test with 4bits image.
-    
-        The 16 x 16 /DeviceGray image has the gray level y in each pixel of row y, from black to white.
-        """
-        reader = PdfReader(BytesIO(get_data_from_url(name="4bits_image.pdf")))
-        image = reader.pages[0].images[0].image
-        expected = bytes(y * 255 // 15 for y in range(16) for _ in range(16))
-        assert image.size == (16, 16)
->       assert image.convert("L").tobytes() == expected
-E       assert b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00' == b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x11\x11\x11\x11\x11\x11\x11\x11\x11\x11\x11\x11\x11\x11\x11\x11""""""""""""""""3333333333333333DDDDDDDDDDDDDDDDUUUUUUUUUUUUUUUUffffffffffffffffwwwwwwwwwwwwwwww\x88\x88\x88\x88\x88\x88\x88\x88\x88\x88\x88\x88\x88\x88\x88\x88\x99\x99\x99\x99\x99\x99\x99\x99\x99\x99\x99\x99\x99\x99\x99\x99\xaa\xaa\xaa\xaa\xaa\xaa\xaa\xaa\xaa\xaa\xaa\xaa\xaa\xaa\xaa\xaa\xbb\xbb\xbb\xbb\xbb\xbb\xbb\xbb\xbb\xbb\xbb\xbb\xbb\xbb\xbb\xbb\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xdd\xdd\xdd\xdd\xdd\xdd\xdd\xdd\xdd\xdd\xdd\xdd\xdd\xdd\xdd\xdd\xee\xee\xee\xee\xee\xee\xee\xee\xee\xee\xee\xee\xee\xee\xee\xee\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff'
-E         
-E         At index 16 diff: b'\x00' != b'\x11'
-E         
-E         Full diff:
-E           (b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
-E         -  b'\x11\x11\x11\x11\x11\x11\x11\x11\x11\x11\x11\x11\x11\x11\x11\x11""""""""""""'
-E         -  b'""""3333333333333333DDDDDDDDDDDDDDDDUUUUUUUUUUUUUUUUffffffffffffffffwwwwwwww'
-E         -  b'wwwwwwww\x88\x88\x88\x88\x88\x88\x88\x88\x88\x88\x88\x88\x88\x88\x88\x88'
-E         -  b'\x99\x99\x99\x99\x99\x99\x99\x99\x99\x99\x99\x99\x99\x99\x99\x99'
-E         -  b'\xaa\xaa\xaa\xaa\xaa\xaa\xaa\xaa\xaa\xaa\xaa\xaa\xaa\xaa\xaa\xaa'
-E         -  b'\xbb\xbb\xbb\xbb\xbb\xbb\xbb\xbb\xbb\xbb\xbb\xbb\xbb\xbb\xbb\xbb'
-E         -  b'\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc'
-E         -  b'\xdd\xdd\xdd\xdd\xdd\xdd\xdd\xdd\xdd\xdd\xdd\xdd\xdd\xdd\xdd\xdd'
-E         -  b'\xee\xee\xee\xee\xee\xee\xee\xee\xee\xee\xee\xee\xee\xee\xee\xee'
-E         -  b'\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff')
-E         +  b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
-E         +  b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
-E         +  b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
-E         +  b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
-E         +  b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
-E         +  b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
-E         +  b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
-E         +  b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
-E         +  b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
-E         +  b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
-E         +  b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
-E         +  b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
-E         +  b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
-E         +  b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
-E         +  b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00')
-
-tests\test_filters.py:519: AssertionError
------------------------------- Captured log call ------------------------------
-WARNING  pypdf._reader:_utils.py:531 incorrect startxref pointer(4)
-WARNING  pypdf._reader:_utils.py:536 parsing for Object Streams
-=========================== short test summary info ===========================
-FAILED tests/test_filters.py::test_4bits_image - assert b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00' == b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x11\x11\x11\x11\x11\x11\x11\x11\x11\x11\x11\x11\x11\x11\x11\x11""""""""""""""""3333333333333333DDDDDDDDDDDDDDDDUUUUUUUUUUUUUUUUffffffffffffffffwwwwwwwwwwwwwwww\x88\x88\x88\x88\x88\x88\x88\x88\x88\x88\x88\x88\x88\x88\x88\x88\x99\x99\x99\x99\x99\x99\x99\x99\x99\x99\x99\x99\x99\x99\x99\x99\xaa\xaa\xaa\xaa\xaa\xaa\xaa\xaa\xaa\xaa\xaa\xaa\xaa\xaa\xaa\xaa\xbb\xbb\xbb\xbb\xbb\xbb\xbb\xbb\xbb\xbb\xbb\xbb\xbb\xbb\xbb\xbb\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xdd\xdd\xdd\xdd\xdd\xdd\xdd\xdd\xdd\xdd\xdd\xdd\xdd\xdd\xdd\xdd\xee\xee\xee\xee\xee\xee\xee\xee\xee\xee\xee\xee\xee\xee\xee\xee\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff'
-  
-  At index 16 diff: b'\x00' != b'\x11'
-  
-  Full diff:
-    (b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
-  -  b'\x11\x11\x11\x11\x11\x11\x11\x11\x11\x11\x11\x11\x11\x11\x11\x11""""""""""""'
-  -  b'""""3333333333333333DDDDDDDDDDDDDDDDUUUUUUUUUUUUUUUUffffffffffffffffwwwwwwww'
-  -  b'wwwwwwww\x88\x88\x88\x88\x88\x88\x88\x88\x88\x88\x88\x88\x88\x88\x88\x88'
-  -  b'\x99\x99\x99\x99\x99\x99\x99\x99\x99\x99\x99\x99\x99\x99\x99\x99'
-  -  b'\xaa\xaa\xaa\xaa\xaa\xaa\xaa\xaa\xaa\xaa\xaa\xaa\xaa\xaa\xaa\xaa'
-  -  b'\xbb\xbb\xbb\xbb\xbb\xbb\xbb\xbb\xbb\xbb\xbb\xbb\xbb\xbb\xbb\xbb'
-  -  b'\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc\xcc'
-  -  b'\xdd\xdd\xdd\xdd\xdd\xdd\xdd\xdd\xdd\xdd\xdd\xdd\xdd\xdd\xdd\xdd'
-  -  b'\xee\xee\xee\xee\xee\xee\xee\xee\xee\xee\xee\xee\xee\xee\xee\xee'
-  -  b'\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff')
-  +  b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
-  +  b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
-  +  b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
-  +  b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
-  +  b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
-  +  b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
-  +  b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
-  +  b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
-  +  b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
-  +  b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
-  +  b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
-  +  b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
-  +  b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
-  +  b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
-  +  b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00')
-============================== 1 failed in 0.22s ==============================
-
-```
-
-</details>
-
-- **My findings:** I reproduced the reported behavior on Windows 11 at commit `7f0fb27944b994e2aec53d00457f038ab5312c57`. The existing 4-bit test expected a 16-level grayscale gradient, but the extracted image contained only zero-valued pixels; the first difference appeared at byte index 16. The issue's minimal example also extracted both 2-bit and 4-bit `/DeviceGray` images as mode `P` images with a single black palette entry, while the 8-bit control was extracted correctly in mode `L`. Because the minimal example uses no image filter, the failure is independent of the PNG predictor behavior tracked in [py-pdf/pypdf#4308](https://github.com/py-pdf/pypdf/issues/4308). The existing test also emitted startxref and object-stream parsing warnings, but parsing completed and the assertion failed specifically on the extracted pixel values.
+  Separately, in the `pk2` case, the counts dropped from 7–8 per value on page 1 to 3–4 on page 2, and page 3 showed only `s=1`, while the heading remained at 201 rows. Reproducing the behavior with two columns showed that it was not limited to `pk1`; its implementation cause still required source investigation.
 
 **Toolkit**
 
-- Tool: repro-check; I used it in live mode to grade my posted claim together with the completed reproduction report for py-pdf/pypdf#4316.
-- What it produced: It returned an accept verdict with all five required checks passing. The grader confirmed that the environment was recorded, the steps were followable, the artifacts directly showed the reported behavior, the conclusion matched the evidence, and the package followed the repository's conventions.
-- Difficulties: The final result mixed the required rubric grades with several non-blocking suggestions, so I had to distinguish actual failures from optional feedback. In particular, I checked its comments about requirements/ci-3.11.txt and the test's gray-level wording against the repository's testing documentation and source.
-- What changed: No change was required to obtain the accepted verdict. After manually checking the optional feedback, I kept the documented CI requirements and the source-accurate gray-level explanation. 
+- Tool: repro-check; I used it in live mode to grade my posted claim together with the completed reproduction report for Datasette #3021.
+- What it produced: It returned an accept verdict with all five checks passing and verified the recorded environment and behavior through the public demo's JSON endpoints.
+- Difficulties: The issue already included a detailed reproduction and video, so I needed to distinguish my observations from the reporter's evidence and avoid treating the reported cause as something proven by my reproduction.
+- What changed: No change was required to obtain the accepted verdict.
 
 ---
 
@@ -340,93 +219,95 @@ FAILED tests/test_filters.py::test_4bits_image - assert b'\x00\x00\x00\x00\x00\x
 
 **Analysis**
 
-[Your analysis of the root cause: what is causing the issue, traced
-to the files and functions involved.]
+`table_view_data()` creates `from_sql` and `from_sql_params` as snapshots of the filtered query before the `_next` cursor conditions are added. However, `sql_no_order_no_limit`, which was passed to the facets, was also built from
+the post-pagination `where_clause`. `table_extras.py` likewise passed the later parameter set to the facet classes. As a result, facet counts depended
+on the current page. Facet value links were also built from the current page URL without removing `_next`. The same pattern was used by the built-in column, array, and date facets.
 
 **Proposed Solution**
 
-[High-level description of your fix approach, and what you are
-deliberately NOT changing.]
+Reuse the existing pre-pagination `from_sql` and `from_sql_params` before `_next` is applied. When building a link that selects or clears a facet value, remove `_next` but keep all other query arguments, including filters, sorting, and repeated arguments. Leave the paginated row query and whole-facet removal links unchanged.
 
 **Implementation Plan**
 
-1. [Modify file X to do Y]
-2. [Add or change Z]
-3. [Update tests]
+1. Add regression tests in `tests/test_facets.py` for page-independent counts and value links without `_next`.
+2. Update `table.py` and `table_extras.py` to pass `from_sql` and `from_sql_params` to facets.
+3. Update the column, array, and date link paths in `facets.py`, then run the focused, related, formatting, lint, and full-suite checks.
 
-[Record deviations here as they happen: what changed mid-build and
-why. A recorded deviation is honest work; silent drift is not.]
+The plan did not originally specify the order of the link-helper calls. Before applying that change, I found that removing a selected value first could
+produce a path with no query string. A subsequent helper call could then fall
+back to the original request arguments and restore the selected value. I therefore implemented the selected-value path by removing `_next` first and the selected value second, and added a guard test for that case.
 
 **Toolkit**
 
-- Tool:
-- What it produced:
-- Difficulties:
-- What changed:
+- Tool: Claude Code; I used it to inspect the relevant code paths and draft
+  the plan, then to generate the implementation changes after the plan was
+  accepted.
+- What it produced: It produced the draft changes across the four affected source and test files, which I reviewed and revised.
+- Difficulties: The correct ordering of the two facet-link helper calls was not obvious because an empty intermediate query could cause the original arguments to be restored.
+- What changed: I reversed the removal order and added a guard test for deselecting a metadata-configured facet value when it is the only query argument.
 
 ---
 
 ## Testing Strategy
 
-[What observable checks prove the fix: your reproduction steps re-run
-against the built change (before and after), and the repo's own test
-suite or checks with the outcome shown. "Tests pass" with nothing
-observable named is not a strategy.]
+I first ran the new focused tests while the production code was still unchanged. The ten issue-regression cases failed, while the existing-behavior guard test passed. This gave me a baseline showing both the reported bug and the behavior that the fix must not break.
+
+After the implementation, all eleven focused cases passed. They verify that facet counts remain stable across plain, filtered, and sorted pagination; selecting `d` removes `_next` and returns all 26 matching rows; and column, array, and date facet links handle both selected and unselected values while preserving repeated arguments.
+
+I also repeated the original browser steps against the fixed branch in WSL. The `pk1` counts remained `a–g=26` and `h=19` on pages 1, 2, and 3. Selecting `d` from page 2 removed `_next` and displayed all 26 rows from `d,a` through `d,z`, instead of only the four rows after the old cursor.
+
+Black and Ruff passed. The complete WSL non-serial suite finished with 2,804 passed, 85 skipped, 6 xfailed, and 15 xpassed; the serial suite passed all 40 tests. On Windows, some related and full-suite tests encountered `WinError 32` temporary-file cleanup failures both before and after the change, so I did not describe those Windows runs as clean passes.
 
 **Toolkit**
 
-- Tool:
-- What it produced:
-- Difficulties:
-- What changed:
+- Tool: `pytest`, the local Datasette server, and the ship-gate; I used them for the failing baseline, automated verification, manual browser check, and final repository checks.
+- What it produced: The focused result changed from ten failures plus one passing guard case to eleven passing cases, the browser reproduction passed after the fix, and the Linux full suites completed without failures.
+- Difficulties: I spent significant time deciding which cases covered the affected paths without adding arbitrary combinations, and Windows temporary-file cleanup errors made the full-suite output difficult to interpret.
+- What changed: I settled on ten issue-regression cases: three count scenarios, one regression case reproducing the reported page-2 `d` link, and six selected/unselected cases across column, array, and date facets. I also added an eleventh guard test for the link-helper ordering and used WSL for a clean full-suite result.
 
 ---
 
 ## Implementation Notes
 
-[A running log, added to as you work. Date each entry. What you
-built, decisions you made when you made them, wrong turns included.]
+**2026-10-31**
 
-**[Date]**
+I added the regression tests before changing the production code. Ten issue-regression cases failed, while the metadata-facet guard case passed. My initial approach considered rebuilding the facet SQL, but source review showed that `from_sql` and `from_sql_params` already contained the required pre-pagination query, so I reused those snapshots instead.
 
-[Entry]
+While implementing the facet-link change, I found that removing a selected value before `_next` could produce a path with no query string. The next helper call could then restore the original request arguments. I reversed that order and added an eleventh guard test. After the fix, all eleven focused cases passed.
 
-**[Date]**
+**2026-11-02**
 
-[Entry]
+I reran the full test suites in WSL after Windows temporary-file cleanup errors made the local full-suite results difficult to interpret. The WSL non-serial suite completed with 2,804 passed, 85 skipped, 6 xfailed, and 15 xpassed, and all 40 serial tests passed. I also repeated the browser reproduction against the fixed branch: facet counts remained complete on later pages, and selecting `d` returned all 26 matching rows without `_next`.
 
 **Toolkit**
 
-- Tool:
-- What it produced:
-- Difficulties:
-- What changed:
+- Tool: Claude Code; I used it for code navigation and initial drafts of the implementation and tests.
+- What it produced: It produced draft changes in `table.py`, `table_extras.py`, `facets.py`, and `tests/test_facets.py`, which I reviewed against the issue and source code.
+- Difficulties: The first approach did not take advantage of the existing pre-pagination SQL snapshots, and the selected-value link path had a non-obvious argument-restoration edge case.
+- What changed: I reused `from_sql` and `from_sql_params`, removed `_next` before removing a selected value, and added a guard test for the helper-call ordering.
 
 ---
 
 ## Pull Request
 
-**PR Link:** [GitHub PR URL when opened]
+**PR Link:** https://github.com/simonw/datasette/pull/3026
 
-**PR Description:** [what the PR says; much of the content above
-adapts into it]
+**PR Description:** The PR explains why pagination conditions affected facet counts and links, then describes the change to use the existing pre-pagination SQL and remove `_next` from column, array, and date facet value links. It includes the focused regression results, Black and Ruff checks, the Windows cleanup limitation, clean WSL full-suite results, and an AI-assistance disclosure. It uses `Fixes #3021` to link the issue.
+
+I also linked a manually triggered GitHub Actions run on my fork. Its Test workflow passed on Python 3.11 through 3.15.
 
 **Maintainer Feedback:**
 
-- [Date]: [feedback received, or "none yet"; silence is a normal
-  state and costs you nothing]
-- [Date]: [how you addressed it]
+- 2026-11-03: None yet. The PR remains open, and no Datasette maintainer has requested changes.
 
-**Status:** [Awaiting review / Iterating / Merged / Closed. The
-status is a fact you record, never a grade: the PR is graded as
-opened.]
+**Status:** Awaiting review
 
 **Toolkit**
 
-- Tool:
-- What it produced:
-- Difficulties:
-- What changed:
+- Tool: `ship-gate`; I ran it manually on the final branch with `plan.md`, `test_evidence.md`, and `pr_draft.md` before opening the PR.
+- What it produced: It passed Black and Ruff, then returned an accept verdict from `pr-precheck` for plan fidelity, test evidence, diff quality, and repository standards.
+- Difficulties: Windows cleanup failures meant that I could not honestly describe the original local full-suite run as passing, and the gate noted that one explanation of the changed test totals was too broad.
+- What changed: I separated the focused before-and-after evidence from the Windows failures, recorded the clean WSL results, and kept the limitation explicit in the PR description.
 
 ---
 
@@ -434,25 +315,19 @@ opened.]
 
 **Technical Skills Gained**
 
-[What you learned technically, named concretely.]
+I learned how Datasette implements keyset pagination with `_next` and how pagination conditions can accidentally leak into related SQL queries. I also learned to keep SQL and parameter snapshots together, preserve repeated query arguments when modifying URLs, and use focused regression tests to separate count errors from link behavior.
 
 **Challenges Overcome**
 
-[What was hard and how you solved it; point at the real events, the
-Toolkit blocks above are full of them.]
+The main challenge was tracing why the table heading remained correct while facet counts changed between pages. Comparing the count, row, and facet query paths showed that they were using SQL captured at different stages. I also found an edge case where calling the link helpers in the wrong order could restore removed arguments. Finally, Windows temporary-file cleanup failures made the full test results difficult to interpret, so I used focused before-and-after evidence and reran the complete suites in WSL.
 
 **What I'd Do Differently Next Time**
 
-[Reflection on your process.]
-
+After reproducing the issue, I would spend more time checking existing query snapshots and helper behavior before finalizing the implementation plan. That would have revealed earlier that Datasette already stored the pre-pagination SQL and that the link-helper call order required special care. I would also move the full-suite testing to WSL sooner once the Windows cleanup failures appeared.
 ---
 
 ## Resources Used
 
-[What actually helped, not a reading list. List things this story
-already shows you using: the doc you followed to set the environment
-up, the thread that explained the bug, the person who answered you.
-One real entry beats ten plausible ones.]
-
-- [Link to documentation that helped]
-- [Discussion, issue, or post that helped]
+- [Datasette issue #3021](https://github.com/simonw/datasette/issues/3021) provided the original reproduction steps, expected behavior, and affected code paths, which I verified against the public demo and source.
+- [Datasette contributing guide](https://github.com/simonw/datasette/blob/main/docs/contributing.rst) provided the repository’s development, testing, and formatting commands.
+- [Datasette public demo](https://latest.datasette.io/fixtures/sortable) provided the fixture data used for the initial browser reproduction.
